@@ -4,6 +4,11 @@ interface NavbarProps {
     setCity: (city: string) => void;
 }
 
+const buttons = [
+    {label: "Gliwice", value: "Gliwice"},
+    {label: "Hamburg", value: "Hamburg"}
+]
+
 const Navbar = ({setCity}: NavbarProps) => {
     const [search, setSearch] = useState<string>('');
     const handleSearch = () => {
@@ -12,8 +17,14 @@ const Navbar = ({setCity}: NavbarProps) => {
 
     return (
         <header className='bg-background md:rounded-2xl shadow-md md:mt-4 shadow-black/70'>
-            <nav className="flex flex-row items-center justify-around p-4">
-                <a href="" className='text-lg font-bold text-primary'>Główna</a>
+            <nav className="flex flex-row items-center justify-around p-4 flex-wrap gap-2">
+                <ul className='flex gap-4'>
+                    {buttons.map((button, index) => (
+                        <li key={index}>
+                            <button className='cursor-pointer font-medium text-primary' onClick={() => setCity(button.value)}>{button.label}</button>
+                        </li>
+                    ))}
+                </ul>
                 <div className='flex flex-row gap-2.5'>
                     <input onChange={(e) => setSearch(e.target.value)}
                         className='text-sm rounded-md px-4 py-2 duration-300 border border-slate-300 hover:border-slate-400'

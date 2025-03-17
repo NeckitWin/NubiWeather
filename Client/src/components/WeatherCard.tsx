@@ -1,9 +1,26 @@
-const WeatherCard = () => {
+interface WeatherDay {
+    date: string;
+    day: {
+        mintemp_c: number;
+        maxtemp_c: number;
+        condition: {
+            text: string;
+            icon: string;
+        }
+    }
+}
+
+interface WeatherCardProps {
+    day: WeatherDay;
+}
+
+const WeatherCard = ({day}: WeatherCardProps) => {
+    const { condition, mintemp_c, maxtemp_c } = day.day;
     return (
-        <li className='flex flex-col justify-center items-center gap-4 rounded-lg shadow shadow-primary bg-white/40 p-4 duration-200 hover:-translate-y-0.5'>
-            <h5 className='font-medium text-primary'>Dzień tygodnia</h5>
-            <img src="icon/sun.png" alt="sun"/>
-            <span className='text-primary'>-2°/10°</span>
+        <li className='flex flex-col justify-center items-center gap-3 rounded-lg shadow shadow-primary bg-white/40 p-4 duration-200 hover:-translate-y-0.5'>
+            <h5 className='font-bold text-primary'>{day.date}</h5>
+            <img src={condition.icon} alt={condition.text}/>
+            <span className='text-primary font-medium'>{Math.round(mintemp_c)}° / {Math.round(maxtemp_c)}°</span>
         </li>
     );
 }

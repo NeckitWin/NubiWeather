@@ -6,7 +6,7 @@ const fetchWeatherData = async (city: string) => {
         throw new Error('API key is missing');
     }
 
-    const response = await fetch(`${BASE_URL}/current.json?key=${WEATHER_API_KEY}&q=${city}&lang=pl`);
+    const response = await fetch(`${BASE_URL}/forecast.json?key=${WEATHER_API_KEY}&q=${city}&days=5&lang=pl`);
     const data = await response.json();
     return data;
 }

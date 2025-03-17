@@ -18,10 +18,11 @@ const Main = ({weatherData}: MainProps) => {
     const { name: cityName, country: countryName, localtime } = location;
     const { temp_c, feelslike_c, wind_kph, humidity, condition } = current;
 
+    console.log(weatherData);
+
     return (
         <main className="bg-background md:rounded-2xl shadow-md shadow-primary mt-6 p-6">
             <h1 className='text-center text-black/90 text-4xl font-bold'>{cityName} | {countryName}</h1>
-
             <h3 className='text-center text-primary text-lg mt-2 font-bold'>{localtime}</h3>
             <h2 className='text-center text-primary text-2xl mt-4 font-bold'>{condition.text}</h2>
 
@@ -41,11 +42,9 @@ const Main = ({weatherData}: MainProps) => {
                 <h3 className='md:text-3xl text-2xl text-center font-bold mt-8 md:mt-12 mb-8 text-primary'>Prognoza
                     pogody na 5 dni</h3>
                 <ul className='flex justify-around flex-wrap gap-4'>
-                    <WeatherCard/>
-                    <WeatherCard/>
-                    <WeatherCard/>
-                    <WeatherCard/>
-                    <WeatherCard/>
+                    {weatherData.forecast.forecastday.map((day) => (
+                        <WeatherCard day={day} key={day.date}/>
+                    ))}
                 </ul>
             </section>
 
