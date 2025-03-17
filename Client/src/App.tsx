@@ -6,7 +6,7 @@ import {fetchWeatherData} from "./services/weatherService.ts";
 
 const App = ()=> {
     const [weatherData, setWeatherData] = useState<any>(null);
-    const [city, setCity] = useState<string>('');
+    const [city, setCity] = useState<string>('Gliwice');
 
     useEffect(() => {
         if (city) {
@@ -20,7 +20,6 @@ const App = ()=> {
             }
 
             getWeatherData();
-            // console.log(weatherData);
         }
 
     }, [city])

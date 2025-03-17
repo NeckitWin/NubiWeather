@@ -18,7 +18,8 @@ const Navbar = ({setCity}: NavbarProps) => {
     return (
         <header className='bg-background md:rounded-2xl shadow-md md:mt-4 shadow-black/70'>
             <nav className="flex flex-row items-center justify-around p-4 flex-wrap gap-2">
-                <ul className='flex gap-4'>
+                <ul className='flex gap-4 items-center'>
+                    <li><img src="svg/nubisoft.svg" alt="nubiweather" height='32' width='32'/></li>
                     {buttons.map((button, index) => (
                         <li key={index}>
                             <button className='cursor-pointer font-medium text-primary' onClick={() => setCity(button.value)}>{button.label}</button>

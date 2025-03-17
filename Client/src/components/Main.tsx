@@ -1,24 +1,22 @@
 import WeatherCard from "./WeatherCard.tsx";
-import { WeatherData } from "../types/weatherData";
+import {WeatherData} from "../types/weatherData";
 
 interface MainProps {
     weatherData: WeatherData;
 }
 
 const Main = ({weatherData}: MainProps) => {
-    if (!weatherData) {
+    if (!weatherData?.location) {
         return (
             <main className="bg-background md:rounded-2xl shadow-md shadow-primary mt-6 p-6">
-                <h1 className='text-center text-black/90 text-4xl font-bold'>Wyszukaj miasto</h1>
+                <h1 className='text-center text-black/90 text-4xl font-bold'>Nie znaleziono miasta</h1>
             </main>
         )
     }
 
-    const { location, current } = weatherData;
-    const { name: cityName, country: countryName, localtime } = location;
-    const { temp_c, feelslike_c, wind_kph, humidity, condition } = current;
-
-    console.log(weatherData);
+    const {location, current} = weatherData;
+    const {name: cityName, country: countryName, localtime} = location;
+    const {temp_c, feelslike_c, wind_kph, humidity, condition} = current;
 
     return (
         <main className="bg-background md:rounded-2xl shadow-md shadow-primary mt-6 p-6">
@@ -41,7 +39,7 @@ const Main = ({weatherData}: MainProps) => {
             <section>
                 <h3 className='md:text-3xl text-2xl text-center font-bold mt-8 md:mt-12 mb-8 text-primary'>Prognoza
                     pogody na 5 dni</h3>
-                <ul className='flex justify-around flex-wrap gap-4'>
+                <ul className='flex justify-center flex-wrap gap-10'>
                     {weatherData.forecast.forecastday.map((day) => (
                         <WeatherCard day={day} key={day.date}/>
                     ))}
