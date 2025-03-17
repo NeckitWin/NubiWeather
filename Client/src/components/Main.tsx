@@ -3,7 +3,7 @@ import {WeatherData} from "../types/weatherData";
 import {formatDate} from "../utils/formatDate.ts";
 
 interface MainProps {
-    weatherData: WeatherData;
+    weatherData: WeatherData | null;
 }
 
 const Main = ({weatherData}: MainProps) => {
