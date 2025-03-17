@@ -19,10 +19,14 @@ const Main = () => {
             </section>
 
             <section>
-                <h3 className='text-3xl text-center font-bold mt-6 text-primary'>5 dni pogody</h3>
-                <div>
+                <h3 className='text-3xl text-center font-bold mt-12 mb-6 text-primary'>Prognoza pogody na 5 dni</h3>
+                <ul className='flex justify-around flex-wrap gap-4'>
                     <WeatherCard/>
-                </div>
+                    <WeatherCard/>
+                    <WeatherCard/>
+                    <WeatherCard/>
+                    <WeatherCard/>
+                </ul>
             </section>
 
         </main>
