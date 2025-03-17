@@ -1,5 +1,6 @@
 import WeatherCard from "./WeatherCard.tsx";
 import {WeatherData} from "../types/weatherData";
+import {formatDate} from "../utils/formatDate.ts";
 
 interface MainProps {
     weatherData: WeatherData;
@@ -15,25 +16,39 @@ const Main = ({weatherData}: MainProps) => {
     }
 
     const {location, current} = weatherData;
-    const {name: cityName, country: countryName, localtime} = location;
+    const {name: cityName, country: countryName, localtime_epoch} = location;
     const {temp_c, feelslike_c, wind_kph, humidity, condition} = current;
+    const now = formatDate(localtime_epoch);
 
     return (
         <main className="bg-background md:rounded-2xl shadow-md shadow-primary mt-6 p-6">
             <h1 className='text-center text-black/90 text-4xl font-bold'>{cityName} | {countryName}</h1>
-            <h3 className='text-center text-primary text-lg mt-2 font-bold'>{localtime}</h3>
+            <h3 className='text-center text-primary text-lg mt-2 font-bold'>{now}</h3>
             <h2 className='text-center text-primary text-2xl mt-4 font-bold'>{condition.text}</h2>
 
             <section>
-                <h3 className='text-5xl text-center font-bold mt-4 text-black/90'>
-                    <span>{temp_c}</span>°C
-                </h3>
-
-                <div className='mt-10 flex flex-row justify-center gap-8 text-primary'>
-                    <div>Odczuwalna: {feelslike_c}°C</div>
-                    <div>Prędkość wiatru {wind_kph} km/h</div>
-                    <div>Wilgotność {humidity}%</div>
+                
+                <div className="relative font-bold mt-4 text-black/90 flex items-center justify-center">
+                    <img src={condition.icon} alt={condition.text} className='w-24 h-24'/>
+                    <span className='text-5xl'>{Math.round(temp_c)}°C</span>
                 </div>
+
+
+                <div className='mt-10 flex flex-row justify-center gap-12 text-primary'>
+                    <div className='flex flex-col items-center gap-2'>
+                        <img src="icon/temperature.png" alt="feels like"/>
+                        <span>Odczuwalna {feelslike_c}°C</span>
+                    </div>
+                    <div className='flex flex-col items-center gap-2'>
+                        <img src="icon/windy.png" alt="wind speed"/>
+                        <span>Prędkość wiatru {wind_kph} km/h</span>
+                    </div>
+                    <div className='flex flex-col items-center gap-2'>
+                        <img src="icon/humidity.png" alt="humidity"/>
+                        <span>Wilgotność {humidity}%</span>
+                    </div>
+                </div>
+
             </section>
 
             <section>

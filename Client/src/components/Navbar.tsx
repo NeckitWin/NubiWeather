@@ -13,6 +13,7 @@ const Navbar = ({setCity}: NavbarProps) => {
     const [search, setSearch] = useState<string>('');
     const handleSearch = () => {
         setCity(search);
+        setSearch('');
     }
 
     return (
@@ -27,7 +28,7 @@ const Navbar = ({setCity}: NavbarProps) => {
                     ))}
                 </ul>
                 <div className='flex flex-row gap-2.5'>
-                    <input onChange={(e) => setSearch(e.target.value)}
+                    <input onChange={(e) => setSearch(e.target.value)} value={search}
                         className='text-sm rounded-md px-4 py-2 duration-300 border border-slate-300 hover:border-slate-400'
                         placeholder='Wyszukaj miasto'
                     />
