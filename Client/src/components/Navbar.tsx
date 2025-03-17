@@ -1,14 +1,26 @@
-const Navbar = () => {
+import {useState} from "react";
+
+interface NavbarProps {
+    setCity: (city: string) => void;
+}
+
+const Navbar = ({setCity}: NavbarProps) => {
+    const [search, setSearch] = useState<string>('');
+    const handleSearch = () => {
+        setCity(search);
+    }
+
     return (
         <header className='bg-background md:rounded-2xl shadow-md md:mt-4 shadow-black/70'>
             <nav className="flex flex-row items-center justify-around p-4">
                 <a href="" className='text-lg font-bold text-primary'>Główna</a>
                 <div className='flex flex-row gap-2.5'>
-                    <input
+                    <input onChange={(e) => setSearch(e.target.value)}
                         className='text-sm rounded-md px-4 py-2 duration-300 border border-slate-300 hover:border-slate-400'
                         placeholder='Wyszukaj miasto'
                     />
-                    <button className='bg-blue-500 rounded-md shadow shadow-secondary duration-300 hover:-translate-y-0.5 text-white flex items-center justify-center gap-2 py-2 px-4 cursor-pointer'>
+                    <button onClick={handleSearch}
+                        className='bg-blue-500 rounded-md shadow shadow-secondary duration-300 hover:-translate-y-0.5 text-white flex items-center justify-center gap-2 py-2 px-4 cursor-pointer'>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                              className="h-5 w-5 fill-white">
                             <path
