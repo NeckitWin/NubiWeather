@@ -24,6 +24,10 @@ const App = () => {
         const getWeatherData = async () => {
             try {
                 const data = await fetchWeatherData(city);
+                if (data.error) {
+                    setError(data.error);
+                    return;
+                }
                 setWeatherData(data);
                 setError('');
             } catch (err) {

@@ -2,7 +2,7 @@
   "name": "react-ts",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://nubiweather.vercel.app/",
+  "homepage": "https://neckitwin.github.io/NubiWeather/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",

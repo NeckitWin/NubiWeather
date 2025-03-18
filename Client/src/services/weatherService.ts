@@ -6,7 +6,8 @@ const fetchWeatherData = async (city: string) => {
 
         return await response.json();
     } catch (err) {
-        throw new Error((err as Error).message);
+        const {message} = err as Error;
+        throw new Error(`Serwer nie odpowiada,pobierz i odpal go https://github.com/NeckitWin/NubiWeather Szczegóły: ${message}`);
     }
 }
 

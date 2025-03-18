@@ -29,20 +29,11 @@ const Main = ({weatherData, loading, error}: MainProps) => {
         )
     }
 
-    if (error) {
+    if (error || !weatherData) {
         return (
             <main
                 className="bg-background h-96 md:rounded-2xl flex items-center justify-center shadow-md shadow-primary mt-6 p-6">
-                <h1 className='text-center text-black/90 text-4xl font-bold'>{error}</h1>
-            </main>
-        )
-    }
-
-    if (!weatherData?.location) {
-        return (
-            <main
-                className="bg-background h-96 md:rounded-2xl flex items-center justify-center shadow-md shadow-primary mt-6 p-6">
-                <h1 className='text-center text-black/90 text-4xl font-bold'>Nie znaleziono miasta</h1>
+                <h1 className='text-center text-red-900 text-4xl font-bold'>{error}</h1>
             </main>
         )
     }
