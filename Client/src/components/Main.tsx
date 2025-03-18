@@ -20,6 +20,24 @@ const Main = ({weatherData}: MainProps) => {
     const {temp_c, feelslike_c, wind_kph, humidity, condition} = current;
     const now = formatDate(localtime_epoch);
 
+    const weatherDetails = [
+        {
+            icon: "icon/temperature.png",
+            alt: "feels like",
+            label: `Odczuwalna ${feelslike_c}°C`
+        },
+        {
+            icon: "icon/windy.png",
+            alt: "wind speed",
+            label: `Prędkość wiatru ${wind_kph} km/h`
+        },
+        {
+            icon: "icon/humidity.png",
+            alt: "humidity",
+            label: `Wilgotność ${humidity}%`
+        }
+    ];
+
     return (
         <main className="bg-background md:rounded-2xl shadow-md shadow-primary mt-6 p-6">
             <h1 className='text-center text-black/90 text-4xl font-bold'>{cityName} | {countryName}</h1>
@@ -33,20 +51,13 @@ const Main = ({weatherData}: MainProps) => {
                     <span className='text-5xl'>{Math.round(temp_c)}°C</span>
                 </div>
 
-
                 <div className='mt-10 flex flex-row justify-center gap-12 text-primary'>
-                    <div className='flex flex-col items-center gap-2'>
-                        <img src="icon/temperature.png" alt="feels like"/>
-                        <span>Odczuwalna {feelslike_c}°C</span>
-                    </div>
-                    <div className='flex flex-col items-center gap-2'>
-                        <img src="icon/windy.png" alt="wind speed"/>
-                        <span>Prędkość wiatru {wind_kph} km/h</span>
-                    </div>
-                    <div className='flex flex-col items-center gap-2'>
-                        <img src="icon/humidity.png" alt="humidity"/>
-                        <span>Wilgotność {humidity}%</span>
-                    </div>
+                    {weatherDetails.map((detail, index) => (
+                        <div key={index} className='flex flex-col items-center gap-2'>
+                            <img src={detail.icon} alt={detail.alt}/>
+                            <span>{detail.label}</span>
+                        </div>
+                    ))}
                 </div>
 
             </section>
