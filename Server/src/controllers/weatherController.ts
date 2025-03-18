@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { fetchWeatherData } from '../services/weatherService';
+import { fetchSearchWeatherData, fetchWeatherData } from '../services/weatherService';
 
-export const getWeather = async (req: Request, res: Response) => {
+const getWeather = async (req: Request, res: Response) => {
   const { city } = req.params;
 
   try {
@@ -11,3 +11,16 @@ export const getWeather = async (req: Request, res: Response) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+const searchWeather = async (req: Request, res: Response) => {
+  const { city } = req.params;
+
+  try {
+    const data = await fetchSearchWeatherData(city);
+    res.json(data);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export { getWeather, searchWeather };

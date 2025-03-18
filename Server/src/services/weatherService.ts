@@ -5,7 +5,7 @@ const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const lang = 'pl';
 const days = '5';
 
-export const fetchWeatherData = async (city: string) => {
+const fetchWeatherData = async (city: string) => {
   if (!WEATHER_API_KEY) {
     throw new Error('Nie znaleziono klucza API w pliku Server/.env');
   }
@@ -43,3 +43,13 @@ export const fetchWeatherData = async (city: string) => {
 
   return data;
 };
+
+const fetchSearchWeatherData = async (city: string) => {
+  if (!WEATHER_API_KEY) {
+    throw new Error('Nie znaleziono klucza API w pliku Server/.env');
+  }
+  const response = await fetch(`${BASE_URL}/search.json?key=${WEATHER_API_KEY}&lang=${lang}&q=${city}&limit=5`);
+  return response.json();
+};
+
+export { fetchWeatherData, fetchSearchWeatherData };
