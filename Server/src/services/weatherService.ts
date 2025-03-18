@@ -10,7 +10,7 @@ export const fetchWeatherData = async (city: string) => {
     throw new Error('Brak klucza API dla WeatherAPI');
   }
 
-  const response = await fetch(`${BASE_URL}/forecast.json?key=${WEATHER_API_KEY}&q=${city}&days=${days}&lang=${lang}`);
+  const response = await fetch(`${BASE_URL}/forecast.json?key=${WEATHER_API_KEY}&q=${city}&lang=${lang}&days=${days}`);
   if (!response.ok) {
     throw new Error('Błąd pobierania danych pogodowych');
   }

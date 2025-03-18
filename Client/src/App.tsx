@@ -7,19 +7,31 @@ import {WeatherData} from "./types/weatherData.ts";
 
 const App = () => {
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+    const [error, setError] = useState<string>('');
     const [city, setCity] = useState<string>(
         localStorage.getItem("nubiweather-city") || "Gliwice"
     );
+
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        if (weatherData) {
+            setLoading(false);
+        }
+    }, [weatherData]);
 
     useEffect(() => {
         const getWeatherData = async () => {
             try {
                 const data = await fetchWeatherData(city);
                 setWeatherData(data);
+                setError('');
             } catch (err) {
-                console.error(err);
+                setError((err as Error).message);
+            } finally {
+                setLoading(false);
             }
-        }
+        };
 
         getWeatherData();
 
@@ -29,8 +41,8 @@ const App = () => {
     }, [city])
     return (
         <div className='container mx-auto max-w-5xl rounded-md'>
-            <Navbar setCity={setCity}/>
-            <Main weatherData={weatherData}/>
+            <Navbar setLoading={setLoading} setCity={setCity}/>
+            <Main error={error} loading={loading} weatherData={weatherData}/>
             <Footer/>
         </div>
     );
