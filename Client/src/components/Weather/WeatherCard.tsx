@@ -1,4 +1,4 @@
-import {formatDayOfWeek} from "../utils/dates.ts";
+import {formatDayOfWeek} from "../../utils/dates.ts";
 
 interface WeatherDay {
     date: string;
