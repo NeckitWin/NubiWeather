@@ -1,6 +1,6 @@
 import WeatherCard from "./WeatherCard.tsx";
 import {WeatherData} from "../types/weatherData";
-import {formatDate} from "../utils/formatDate.ts";
+import {formatDate} from "../utils/dates.ts";
 
 interface MainProps {
     weatherData: WeatherData | null;
@@ -27,7 +27,7 @@ const Main = ({weatherData}: MainProps) => {
             <h2 className='text-center text-primary text-2xl mt-4 font-bold'>{condition.text}</h2>
 
             <section>
-                
+
                 <div className="relative font-bold mt-4 text-black/90 flex items-center justify-center">
                     <img src={condition.icon} alt={condition.text} className='w-24 h-24'/>
                     <span className='text-5xl'>{Math.round(temp_c)}°C</span>
