@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchSearchWeatherData } from "../services/searchService.ts";
+import { fetchSearchWeatherData } from "../services/apiService.ts";
 import { SearchData } from "../types/searchData.ts";
 
 export const useSearchWeather = () => {

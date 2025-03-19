@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar.tsx";
 import Main from "./components/Main.tsx";
 import Footer from "./components/Footer.tsx";
 import {useEffect, useState} from "react";
-import {fetchWeatherData} from "./services/weatherService.ts";
+import {fetchWeatherData} from "./services/apiService.ts";
 import {WeatherData} from "./types/weatherData.ts";
 
 const App = () => {

@@ -1,4 +1,5 @@
 export type WeatherData = {
+    error?: string;
     location: {
         name: string;
         region: string;
